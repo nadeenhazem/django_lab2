@@ -1,0 +1,32 @@
+{%extends 'home.html'%}
+{%block username%}
+{{request.session.username}}
+{%endblock%}
+
+{%block content%}
+<!--{{allUsers}}-->
+<table border="3 solid white" width="90%">
+    <tr>
+        <td>ID</td>
+        <td>UserName</td>
+        <td>Email</td>
+        <td>Password</td>
+        <td>Action</td>
+
+    </tr>
+
+{%for allUsers in users%}
+    <tr>
+        <td>{{allUsers.id}}</td>
+        <td>{{allUsers.username}}</td>
+        <td>{{allUsers.email}}</td>
+        <td>{{allUsers.password}}</td>
+        <td>
+            <a href="{% url 'updateuser' allUsers.id %}">Update</a>
+           <a href="{%url 'deleteuser' allUsers.id %}" >Delete</a>
+        </td>
+    </tr>
+{%endfor%}
+</table>
+
+{%endblock%}
